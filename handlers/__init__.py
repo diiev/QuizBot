@@ -6,4 +6,5 @@ def register_handlers(dp):
     register_start_handlers(dp)
     register_quiz_handlers(dp)
 
+
    

@@ -1,17 +1,463 @@
 [
     {
-        "question": "Что такое Python?",
+        "question": "Что такое HTML?",
         "options": [
+            "Язык разметки",
             "Язык программирования",
-            "Тип данных",
-            "Музыкальный инструмент",
-            "Змея на английском"
+            "Графический редактор"
         ],
-        "correct_option": 0
+        "correct_option": 0,
+        "difficulty": "easy"
     },
     {
-        "question": "Какой тип данных используется для хранения целых чисел?",
-        "options": ["int", "float", "str", "natural"],
-        "correct_option": 0
+        "question": "Для чего используется тег <a>?",
+        "options": [
+            "Для создания гиперссылки",
+            "Для форматирования текста",
+            "Для добавления изображения"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой атрибут используется для задания пути к изображению в теге <img>?",
+        "options": [
+            "src",
+            "alt",
+            "href"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой тег используется для создания абзаца?",
+        "options": [
+            "<p>",
+            "<br>",
+            "<div>"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Что означает тег <h1>?",
+        "options": [
+            "Заголовок первого уровня",
+            "Параграф",
+            "Список"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой атрибут используется для добавления альтернативного текста изображения?",
+        "options": [
+            "alt",
+            "src",
+            "title"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой элемент используется для вставки комментариев в HTML?",
+        "options": [
+            "<!-- комментарий -->",
+            "// комментарий",
+            "/* комментарий */"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой тег используется для выделения жирного текста?",
+        "options": [
+            "<b>",
+            "<strong>",
+            "<em>"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой тег используется для создания списка с маркерами?",
+        "options": [
+            "<ul>",
+            "<ol>",
+            "<li>"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой атрибут используется для открытия ссылки в новой вкладке?",
+        "options": [
+            "target=\"_blank\"",
+            "rel=\"new\"",
+            "new-tab=\"true\""
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой тег используется для добавления строки в таблицу?",
+        "options": [
+            "<tr>",
+            "<td>",
+            "<table>"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой тег используется для создания ячейки таблицы?",
+        "options": [
+            "<td>",
+            "<tr>",
+            "<th>"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой тег используется для создания выпадающего списка?",
+        "options": [
+            "<select>",
+            "<option>",
+            "<input>"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой тег используется для создания элемента списка в HTML?",
+        "options": [
+            "<li>",
+            "<ul>",
+            "<ol>"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Какой тег используется для вставки горизонтальной линии?",
+        "options": [
+            "<hr>",
+            "<br>",
+            "<line>"
+        ],
+        "correct_option": 0,
+        "difficulty": "easy"
+    },
+    {
+        "question": "Что такое CSS?",
+        "options": [
+            "Каскадные таблицы стилей",
+            "Протокол передачи данных",
+            "Язык серверного программирования"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+  
+    {
+        "question": "Какой тег HTML используется для создания заголовка второго уровня?",
+        "options": [
+            "<h2>",
+            "<h1>",
+            "<h3>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какое свойство CSS задаёт толщину границы?",
+        "options": [
+            "border-width",
+            "border-height",
+            "border-size"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какое свойство CSS задаёт отступы внутри элемента?",
+        "options": [
+            "padding",
+            "margin",
+            "spacing"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какое свойство CSS задаёт отступы вокруг элемента?",
+        "options": [
+            "margin",
+            "padding",
+            "spacing"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какое свойство CSS задаёт стиль шрифта?",
+        "options": [
+            "font-style",
+            "font-size",
+            "text-style"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для добавления подстрочного текста?",
+        "options": [
+            "<sub>",
+            "<sup>",
+            "<small>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для добавления надстрочного текста?",
+        "options": [
+            "<sup>",
+            "<sub>",
+            "<small>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для создания списка определений?",
+        "options": [
+            "<dl>",
+            "<ul>",
+            "<ol>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для обозначения термина в списке определений?",
+        "options": [
+            "<dt>",
+            "<dd>",
+            "<li>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для описания термина в списке определений?",
+        "options": [
+            "<dd>",
+            "<dt>",
+            "<li>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для добавления всплывающего текста?",
+        "options": [
+            "<abbr>",
+            "<span>",
+            "<label>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для добавления текстового поля?",
+        "options": [
+            "<textarea>",
+            "<input>",
+            "<form>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для создания кнопки?",
+        "options": [
+            "<button>",
+            "<input>",
+            "<div>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для добавления раздела?",
+        "options": [
+            "<section>",
+            "<div>",
+            "<article>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для создания статьи?",
+        "options": [
+            "<article>",
+            "<section>",
+            "<div>"
+        ],
+        "correct_option": 0,
+        "difficulty": "medium"
+    },
+    {
+        "question": "Какой тег используется для выделения текста подчёркиванием?",
+        "options": [
+            "<u>",
+            "<b>",
+            "<i>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для создания группы элементов формы?",
+        "options": [
+            "<fieldset>",
+            "<legend>",
+            "<form>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для добавления заголовка группы элементов формы?",
+        "options": [
+            "<legend>",
+            "<fieldset>",
+            "<form>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для создания блока?",
+        "options": [
+            "<div>",
+            "<section>",
+            "<article>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для добавления заголовка таблицы?",
+        "options": [
+            "<caption>",
+            "<thead>",
+            "<th>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для создания заголовков столбцов таблицы?",
+        "options": [
+            "<th>",
+            "<tr>",
+            "<td>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для создания сноски?",
+        "options": [
+            "<footer>",
+            "<aside>",
+            "<div>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для добавления бокового содержимого?",
+        "options": [
+            "<aside>",
+            "<footer>",
+            "<section>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для добавления источника для элемента <audio>?",
+        "options": [
+            "<source>",
+            "<track>",
+            "<audio>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для добавления источника для элемента <video>?",
+        "options": [
+            "<source>",
+            "<track>",
+            "<video>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для добавления субтитров для элемента <video>?",
+        "options": [
+            "<track>",
+            "<caption>",
+            "<subtitle>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для добавления адреса в HTML?",
+        "options": [
+            "<address>",
+            "<footer>",
+            "<div>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какое свойство CSS задаёт прозрачность элемента?",
+        "options": [
+            "opacity",
+            "visibility",
+            "transparent"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какое свойство CSS используется для создания тени текста?",
+        "options": [
+            "text-shadow",
+            "box-shadow",
+            "font-shadow"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
+    },
+    {
+        "question": "Какой тег используется для создания фрейма?",
+        "options": [
+            "<iframe>",
+            "<frame>",
+            "<embed>"
+        ],
+        "correct_option": 0,
+        "difficulty": "hard"
     }
 ]
