@@ -7,7 +7,8 @@ from database.db_utils import (
     save_quiz_result,
     reset_quiz_result
 )
-from keyboards.inline import generate_options_keyboard, main_menu_keyboard, choose_difficulty
+from keyboards.inline import generate_options_keyboard
+from .main_menu import show_user_stats
 from utils.quiz_loader import ALL_QUESTIONS
 
 

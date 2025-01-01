@@ -1,6 +1,8 @@
 from aiogram import types
-from quiz import start_quiz
+from .quiz import start_quiz
 from aiogram import F
+
+
 def register_handlers(dp):
     dp.callback_query.register(handle_difficulty_selection, F.data.in_({"easy", "medium", "hard"}))
 

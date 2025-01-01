@@ -1,5 +1,6 @@
 from aiogram import  types
-from aiogram.utils.keyboard import InlineKeyboardBuilder, InlineKeyboardMarkup, InlineKeyboardButton,Message
+from aiogram.utils.keyboard import InlineKeyboardBuilder, InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import Message
 
 def generate_options_keyboard(answer_options, right_answer):
     builder = InlineKeyboardBuilder()
