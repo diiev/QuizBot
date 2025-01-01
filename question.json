@@ -2,11 +2,11 @@
     {
         "question": "Что такое HTML?",
         "options": [
-            "Язык разметки",
+            "Графический редактор ",
             "Язык программирования",
-            "Графический редактор"
+            "Язык разметки"
         ],
-        "correct_option": 0,
+        "correct_option": 2,
         "difficulty": "easy"
     },
     {
@@ -296,16 +296,6 @@
             "<section>",
             "<div>",
             "<article>"
-        ],
-        "correct_option": 0,
-        "difficulty": "medium"
-    },
-    {
-        "question": "Какой тег используется для создания статьи?",
-        "options": [
-            "<article>",
-            "<section>",
-            "<div>"
         ],
         "correct_option": 0,
         "difficulty": "medium"

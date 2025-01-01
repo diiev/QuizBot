@@ -1,58 +1,42 @@
-from aiogram import  types
-from aiogram.filters.command import Command
+from aiogram import types
 from aiogram import F
-from utils.quiz_loader import load_questions
-from database.db_utils import update_quiz_index, get_quiz_index, get_user_difficulty
-from keyboards.inline import generate_options_keyboard
+from database.db_utils import (
+    update_quiz_state,
+    get_quiz_index,
+    get_user_difficulty,
+    save_quiz_result,
+    reset_quiz_result
+)
+from keyboards.inline import generate_options_keyboard, main_menu_keyboard, choose_difficulty
+from utils.quiz_loader import ALL_QUESTIONS
 
 
-QUESTIONS = load_questions("question.json")
+
 
 def register_handlers(dp):
-    dp.message.register(cmd_quiz, F.text=="Начать игру")
-    dp.message.register(set_difficulty, F.text.in_({"Легкий", "Средний", "Сложный"}))
-    dp.callback_query.register(right_answer, F.data=="right_answer")
-    dp.callback_query.register(wrong_answer,F.data=="wrong_answer")
-   
-
-
-async def set_difficulty(message: types.Message):
-    await message.answer(f"Вы выбрали уровень: {message.text}. Давайте начнем квиз!")
-    await new_quiz(message)
+    dp.callback_query.register(handle_answer, F.data.regexp(r"^answer_\d+_(right|wrong)$"))
 
 
 
-async def cmd_quiz(message: types.Message):
-    await message.answer(f"Давайте начнем квиз!")
-    await set_difficulty(message)
 
+async def start_quiz(callback: types.CallbackQuery, difficulty):
+    await update_quiz_state(callback.from_user.id, 0, difficulty)
+    await reset_quiz_result(callback.from_user.id)
+    await get_question(callback)
 
-async def new_quiz(message):
-    user_id = message.from_user.id
-    current_question_index = 0 
-    difficulty_map = {"Легкий": "easy", "Средний": "medium", "Сложный": "hard"}
-    difficulty = difficulty_map[message.text]
-    await update_quiz_index(user_id, current_question_index, difficulty)
-    await get_question(message, user_id)
-
-
-
-async def get_question(message, user_id): 
-    filtered_questions = await get_filtered_questions(user_id)
-    if not filtered_questions:
-        await message.answer("Нет доступных вопросов для выбранного уровня сложности.")
+async def handle_answer(callback: types.CallbackQuery):
+    data_parts = callback.data.split("_")
+    if len(data_parts) != 3 or not data_parts[1].isdigit():
+        await callback.message.answer("Ошибка: некорректные данные. Попробуйте снова.")
         return
-    QUESTIONS = filtered_questions 
-    # Получение текущего вопроса из словаря состояний пользователя
-    current_question_index = await get_quiz_index(user_id)
-    question_data = QUESTIONS[current_question_index]
-    correct_index = question_data['correct_option']
-    opts = question_data['options']
-    kb = generate_options_keyboard(opts, opts[correct_index])
-    await message.answer(f"{question_data['question']}", reply_markup=kb)
-
-
-async def right_answer(callback: types.CallbackQuery):
+    selected_option_index = int(data_parts[1])  
+    is_correct = data_parts[2] == "right"  
+    question = await get_filtered_questions(callback.from_user.id)
+    current_question_index = await get_quiz_index(callback.from_user.id)
+    question_data = question[current_question_index]
+    user_answer = question_data['options'][selected_option_index]
+    correct_option_index = question_data['correct_option']
+    correct_answer = question_data['options'][correct_option_index]
 
     await callback.bot.edit_message_reply_markup(
         chat_id=callback.from_user.id,
@@ -60,46 +44,38 @@ async def right_answer(callback: types.CallbackQuery):
         reply_markup=None
     )
 
-    await callback.message.answer("Верно!")
-    current_question_index = await get_quiz_index(callback.from_user.id)
-    difficulty = await get_user_difficulty(callback.from_user.id)
-    # Обновление номера текущего вопроса в базе данных
-    current_question_index += 1
-    await update_quiz_index(callback.from_user.id, current_question_index, difficulty)
-
-
-    if current_question_index < len(QUESTIONS):
-        await get_question(callback.message, callback.from_user.id)
+    if is_correct:
+        await callback.message.answer(f"✅ Вы ответили '{user_answer}' и это - правильный ответ!")
+        await save_quiz_result(callback.from_user.id, is_correct, len(question))
+        
     else:
-        await callback.message.answer("Это был последний вопрос. Квиз завершен!")
+        await callback.message.answer(f"❌ Вы ответили '{user_answer}' и это - неправильно.\n✅ Правильный ответ: {correct_answer}")
 
+   
+    await process_next_question(callback)
 
-async def wrong_answer(callback: types.CallbackQuery):
-    await callback.bot.edit_message_reply_markup(
-        chat_id=callback.from_user.id,
-        message_id=callback.message.message_id,
-        reply_markup=None
+async def process_next_question(callback: types.CallbackQuery):
+    current_question_index = await get_quiz_index(callback.from_user.id) + 1
+    await update_quiz_state(callback.from_user.id, current_question_index)
+
+    question = await get_filtered_questions(callback.from_user.id)
+    if current_question_index < len(question):
+        await get_question(callback)
+    else:
+        await callback.message.answer("🏁 Это был последний вопрос. Квиз завершен!")
+        await show_user_stats(callback)
+
+async def get_question(callback: types.CallbackQuery):
+    current_question_index = await get_quiz_index(callback.from_user.id)
+    question = await get_filtered_questions(callback.from_user.id)
+    question_data = question[current_question_index]
+
+    kb = generate_options_keyboard(
+        question_data['options'],
+        question_data['options'][question_data['correct_option']]
     )
-
-    # Получение текущего вопроса из словаря состояний пользователя
-    current_question_index = await get_quiz_index(callback.from_user.id)
-    correct_option = QUESTIONS[current_question_index]['correct_option'] 
-    difficulty = await get_user_difficulty(callback.from_user.id)
-
-    await callback.message.answer(f"Неправильно {}. Правильный ответ: {QUESTIONS[current_question_index]['options'][correct_option]}")
-
-    # Обновление номера текущего вопроса в базе данных
-    current_question_index += 1
-    await update_quiz_index(callback.from_user.id, current_question_index, difficulty)
-
-
-    if current_question_index < len(QUESTIONS):
-        await get_question(callback.message, callback.from_user.id)
-    else:
-        await callback.message.answer("Это был последний вопрос. Квиз завершен!")
-
+    await callback.message.answer(question_data['question'], reply_markup=kb)
 
 async def get_filtered_questions(user_id):
     difficulty = await get_user_difficulty(user_id)
-    filtered = [q for q in QUESTIONS if q["difficulty"] == difficulty]
-    return filtered
+    return [q for q in ALL_QUESTIONS if q["difficulty"] == difficulty]
